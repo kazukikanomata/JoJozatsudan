@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ジョジョ雑談会の奇妙な冒険 ～時系列で見る熱き友情の軌跡～</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap');
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #000;
+            color: white;
+            background-image: radial-gradient(#333 1px, transparent 1px);
+            background-size: 20px 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .title {
+            font-weight: 900;
+            text-shadow: 3px 3px 0 #ff0080, 6px 6px 0 #7928ca;
+            letter-spacing: 2px;
+            transform: skew(-5deg);
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, #ff0080, #7928ca, #0070f3, #00d084);
+            top: 0;
+            bottom: 0;
+            left: 50px;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .event {
+            padding: 1.5rem;
+            position: relative;
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #ff0080, #7928ca, #0070f3, #00d084) 1;
+            border-radius: 10px;
+            margin-bottom: 2.5rem;
+            margin-left: 6rem;
+            transform: skew(-1deg);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .event:hover {
+            transform: skew(-1deg) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .event:before {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            left: -4.7rem;
+            background-color: #f9f871;
+            border: 4px solid #ff0080;
+            top: 22px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px 2px #ff0080;
+        }
+        
+        .event-title {
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .event-title:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #ff0080, transparent);
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            transform: skew(-15deg);
+        }
+        
+        .date {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #ff0080;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            transform: rotate(-2deg);
+            margin-bottom: 0.5rem;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+        }
+        
+        .speech-bubble {
+            position: relative;
+            background: #7928ca;
+            border-radius: .4em;
+            padding: 15px;
+            margin: 10px 0;
+            font-weight: bold;
+            color: white;
+            max-width: 80%;
+            display: inline-block;
+        }
+        
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 0;
+            height: 0;
+            border: 20px solid transparent;
+            border-top-color: #7928ca;
+            border-bottom: 0;
+            margin-left: -10px;
+            margin-bottom: -20px;
+        }
+        
+        .starburst {
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            background: #f9f871;
+            color: #000;
+            font-weight: 900;
+            padding: 15px 10px;
+            transform: rotate(15deg);
+            font-size: 0.875rem;
+            box-shadow: 0 0 10px rgba(249, 248, 113, 0.7);
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+        
+        .starburst:before, .starburst:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: #f9f871;
+            z-index: -1;
+        }
+        
+        .starburst:before {
+            transform: rotate(30deg);
+        }
+        
+        .starburst:after {
+            transform: rotate(60deg);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin: 3rem 0 2rem;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(90deg, #ff0080, #7928ca, #0070f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            transform: skew(-5deg);
+            padding-right: 2rem;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #ff0080, #7928ca, transparent);
+            bottom: 5px;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .effect-line {
+            position: absolute;
+            background: #f9f871;
+            height: 3px;
+            width: 50px;
+            transform: rotate(45deg);
+        }
+        
+        .effect-dot {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #ff0080;
+            border-radius: 50%;
+        }
+        
+        .highlight {
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .highlight:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: rgba(255, 0, 128, 0.3);
+            z-index: -1;
+            transform: skew(-15deg);
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: rotate(15deg) scale(1);
+            }
+            50% {
+                transform: rotate(15deg) scale(1.1);
+            }
+            100% {
+                transform: rotate(15deg) scale(1);
+            }
+        }
+        
+        .effect-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .timeline-container {
+            position: relative;
+        }
+        
+        .phase-marker {
+            position: absolute;
+            left: 50px;
+            transform: translateX(-50%);
+            background: #f9f871;
+            color: black;
+            padding: 5px 10px;
+            font-weight: bold;
+            border-radius: 4px;
+            z-index: 2;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+        }
+        
+        .mangaBtn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff0080, #7928ca);
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+            transform: skew(-5deg);
+            transition: all 0.3s ease;
+        }
+        
+        .mangaBtn:hover {
+            transform: skew(-5deg) scale(1.05);
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+        }
+        
+        .jojo-menacing {
+            position: absolute;
+            font-size: 2rem;
+            font-weight: 900;
+            opacity: 0.2;
+            transform: rotate(-10deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="text-center py-10">
+            <h1 class="title text-5xl md:text-6xl mb-4">
+                ジョジョ雑談会の奇妙な冒険
+            </h1>
+            <p class="text-2xl md:text-3xl text-yellow-300 font-bold" style="transform: skew(-3deg);">
+                ～時系列で見る熱き友情の軌跡～
+            </p>
+        </header>
+        
+        <div class="timeline-container">
+            <div class="section-title">誕生編</div>
+            <div class="timeline">
+                <div class="event relative">
+                    <div class="effect-container">
+                        <div class="jojo-menacing" style="top: 10px; right: 20px;">ゴゴゴ</div>
+                        <div class="jojo-menacing" style="bottom: 10px; left: 30px;">ドドド</div>
+                    </div>
+                    <span class="date">2024年4月20日</span>
+                    <h3 class="event-title">ジョジョ雑談チャット爆誕</h3>
+                    <div class="speech-bubble">
+                        あなたの次のセリフは「素晴らしいチャットだ！」という！
+                    </div>
+                    <div class="starburst">BIRTH!</div>
+                </div>
+                
+                <div class="event relative">
+                    <div class="effect-container">
+                        <div class="jojo-menacing" style="top: 30px; right: 50px;">ゴゴゴ</div>
+                    </div>
+                    <span class="date">2024年4月28日</span>
+                    <h3 class="event-title">第一回ジョジョ雑談会開催</h3>
+                    <p>初めての雑談会が開催され、熱き友情の物語が始まる！</p>
+                </div>
+                
+                <div class="event relative">
+                    <div class="effect-container">
+                        <div class="jojo-menacing" style="bottom: 20px; right: 10px;">ドドド</div>
+                    </div>
+                    <span class="date">2024年5月8日</span>
+                    <h3 class="event-title">てっこ1加入</h3>
+                    <p>新たな仲間<span class="highlight">てっこ1</span>が参戦！グループに新しい風が吹く！</p>
+                </div>
+            </div>
+            
+            <div class="section-title">成長編</div>
+            <div class="timeline">
+                <div class="event relative">
+                    <span class="date">2024年5月25日</span>
+                    <h3 class="event-title">第二回ジョジョ雑談会開催</h3>
+                    <p>絆が深まっていく第二回雑談会！</p>
+                </div>
+                
+                <div class="event relative">
+                    <div class="effect-container">
+                        <div class="jojo-menacing" style="top: 40px; left: 80px;">ゴゴゴ</div>
+                    </div>
+                    <span class="date">2024年6月2日</span>
+                    <h3 class="event-title">ジョジョ雑談会公式グッズ計画始動</h3>
+                    <p>公式グッズの計画が始まり、雑談会はさらなる一歩を踏み出す！</p>
+                </div>
+                
+                <div class="event relative">
+                    <span class="date">2024年6月19日</span>
+                    <h3 class="event-title">さらみさん参戦</h3>
+                    <p>新たなスタンド使い<span class="highlight">さらみさん</span>がグループに加わる！</p>
+                </div>
+                
+                <div class="event relative">
+                    <div class="starburst">MENACING</div>
+                    <span class="date">2024年6月23日</span>
+                    <h3 class="event-title">新メンバー続々参戦</h3>
+                    <p>
+                        <span class="highlight">生はむ</span>参戦<br>
+                        <span class="highlight">まおさん</span>参戦<br>
+                        <span class="highlight">ホランさん</span>参戦
+                    </p>
+                    <div class="speech-bubble">
+                        我々は共に戦う仲間だッ！
+                    </div>
+                </div>
+                
+                <div class="event relative bg-purple-900 bg-opacity-50">
+                    <div class="effect-container">
+                        <div class="jojo-menacing" style="top: 10px; right: 20px;">ゴゴゴ</div>
+                        <div class="jojo-menacing" style="bottom: 30px; left: 40px;">ドドド</div>
+                    </div>
+                    <span class="date">2024年6月30日</span>
+                    <h3 class="event-title text-yellow-300">【秘宝】ジョジョの書降臨</h3>
+                    <p>ついに伝説の秘宝『ジョジョの書』が降臨！グループに新たな力をもたらす！</p>
+                </div>
+            </div>
+            
+            <div class="section-title">発展編</div>
+            <div class="timeline">
+                <div class="event relative">
+                    <span class="date">2024年7月6日</span>
+                    <h3 class="event-title">はこりんさん参戦with なべむさん</h3>
+                    <p>新たな仲間たちの参加でグループの力がさらに高まる！</p>
+                </div>
+                
+                <div class="event relative bg-blue-900 bg-opacity-50">
+                    <div class="starburst">STANDŌ!</div>
+                    <span class="date">2024年7月19日</span>
+                    <h3 class="event-title">第三回ジョジョ雑談会開催</h3>
+                    <p>ザ・ワールド・発動！時は止まった！！</p>
+                    <div class="speech-bubble">
+                        無駄無駄無駄無駄無駄無駄ッ！！
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-title">拡大編</div>
+            <div class="timeline">
+                <div class="event relative">
+                    <div class="effect-container">
+                        <div class="jojo-menacing" style="top: 20px; right: 30px;">ゴゴゴ</div>
+                    </div>
+                    <span class="date">2024年9月15日</span>
+                    <h3 class="event-title">波紋使い参戦</h3>
+                    <p>古の力である波紋を使うユーザーが参戦！グループの力がさらに多様に！</p>
+                </div>
+                
+                <div class="event relative">
+                    <span class="date">2024年9月22日</span>
+                    <h3 class="event-title">第四回ジョジョ雑談会開催</h3>
+                    <p>さらなる友情の深まりを見せる第四回雑談会！</p>
+                </div>
+            </div>
+            
+            <div class="section-title">最盛期</div>
+            <div class="timeline">
+                <div class="event relative">
+                    <span class="date">2024年10月25日</span>
+                    <h3 class="event-title">第五回ジョジョ雑談会開催</h3>
+                    <p>いよいよ第五回目の開催！グループの絆はより一層強固に！</p>
+                </div>
+                
+                <div class="event relative">
+                    <span class="date">2024年11月8日</span>
+                    <h3 class="event-title">第五回ジョジョ雑談会開催 前夜祭</h3>
+                    <p>特別イベントの前夜祭！興奮と期待が高まる！</p>
+                </div>
+                
+                <div class="event relative bg-yellow-900 bg-opacity-30">
+                    <div class="starburst">SPECIAL!</div>
+                    <div class="effect-container">
+                        <div class="jojo-menacing" style="top: 10px; right: 20px;">ゴゴゴ</div>
+                        <div class="jojo-menacing" style="bottom: 10px; left: 30px;">ドドド</div>
+                    </div>
+                    <span class="date">2024年11月9日</span>
+                    <h3 class="event-title text-yellow-300">第五回ジョジョ雑談会開催 Special</h3>
+                    <p>待望のスペシャル回！全メンバーが集結して特別な時間を過ごす！</p>
+                    <div class="speech-bubble">
+                        これこそ運命だッ！
+                    </div>
+                </div>
+                
+                <div class="event relative">
+                    <span class="date">2024年11月10日</span>
+                    <h3 class="event-title">みつおさん参戦</h3>
+                    <p>スペシャル回の興奮冷めやらぬ中、<span class="highlight">みつおさん</span>が新たに参戦！</p>
+                </div>
+                
+                <div class="event relative">
+                    <span class="date">2024年11月18日</span>
+                    <h3 class="event-title">第五回ジョジョ雑談会開催 後夜祭</h3>
+                    <p>盛り上がりを振り返る後夜祭も大盛況！</p>
+                </div>
+            </div>
+            
+            <div class="section-title">新章開幕</div>
+            <div class="timeline">
+                <div class="event relative">
+                    <div class="effect-container">
+                        <div class="jojo-menacing" style="top: 30px; right: 40px;">ゴゴゴ</div>
+                    </div>
+                    <span class="date">2025年3月4日</span>
+                    <h3 class="event-title">ジョジョ雑談会オリジナルTシャツ完成</h3>
+                    <p>待望のオリジナルTシャツがついに完成！メンバーの一体感がさらに増す！</p>
+                </div>
+                
+                <div class="event relative bg-green-900 bg-opacity-30">
+                    <div class="starburst">ASSEMBLY!</div>
+                    <span class="date">2025年3月15日</span>
+                    <h3 class="event-title">名古屋アッセンブル</h3>
+                    <p>メンバーが名古屋に集結！オフラインでの交流も深まる！</p>
+                    <div class="speech-bubble">
+                        我々はアッセンブルする運命にあったのだァーッ！
+                    </div>
+                </div>
+                
+                <div class="event relative bg-purple-900 bg-opacity-30">
+                    <div class="effect-container">
+                        <div class="jojo-menacing" style="top: 10px; right: 20px;">ゴゴゴ</div>
+                        <div class="jojo-menacing" style="bottom: 10px; left: 30px;">ドドド</div>
+                    </div>
+                    <span class="date">2025年5月8日</span>
+                    <h3 class="event-title text-yellow-300">第六回ジョジョ雑談会開催</h3>
+                    <p>新たな年を迎え、第六回目の開催！物語はまだまだ続く・・・！</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="text-center py-10">
+            <p class="text-xl font-bold" style="transform: skew(-3deg);">ジョジョ雑談会の奇妙な冒険は続く・・・</p>
+            <p class="text-lg mt-2 text-yellow-300" style="transform: skew(-3deg);">TO BE CONTINUED →</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 効果線やドットの自動生成
+        document.addEventListener('DOMContentLoaded', function() {
+            const effectContainers = document.querySelectorAll('.effect-container');
+            
+            effectContainers.forEach(container => {
+                // 効果線の追加
+                for (let i = 0; i < 5; i++) {
+                    const line = document.createElement('div');
+                    line.className = 'effect-line';
+                    line.style.top = Math.random() * 100 + '%';
+                    line.style.left = Math.random() * 100 + '%';
+                    line.style.width = (20 + Math.random() * 30) + 'px';
+                    line.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+                    container.appendChild(line);
+                }
+                
+                // ドットの追加
+                for (let i = 0; i < 10; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'effect-dot';
+                    dot.style.top = Math.random() * 100 + '%';
+                    dot.style.left = Math.random() * 100 + '%';
+                    container.appendChild(dot);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
